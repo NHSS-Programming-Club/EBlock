@@ -1,4 +1,4 @@
 EBlock
 ======
 
-Get's EBlock Schedule for Nashua High South.
+Gets EBlock Schedule for Nashua High South.
