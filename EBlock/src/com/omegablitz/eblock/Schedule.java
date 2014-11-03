@@ -30,7 +30,7 @@ public class Schedule extends Activity {
 		Intent intent = getIntent();
 		String[] myItems = intent.getStringArrayExtra(MainActivity.SCHEDULE);
 		myItems[0] = "Monday:\t\t\t\t" + myItems[0];
-		myItems[1] = "Tueday:\t\t\t\t" + myItems[1];
+		myItems[1] = "Tuesday:\t\t\t\t" + myItems[1];
 		myItems[2] = "Wednesday:\t\t\t" + myItems[2];
 		myItems[3] = "Thursday:\t\t\t" + myItems[3];
 		myItems[4] = "Friday:\t\t\t\t\t" + myItems[4];
