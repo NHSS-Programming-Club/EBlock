@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">Nashua South E-Block Checker</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_fix">NHSS E-Blocks</string>
+    <string name="get_schedule_fix">Get Schedule!</string>
+    <string name="enter_id_fix">Enter ID #</string>
+    <string name="title_activity_schedule">Schedule</string>
+
+</resources>
