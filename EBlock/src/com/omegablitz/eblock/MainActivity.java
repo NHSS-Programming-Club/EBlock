@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,13 +32,12 @@ public class MainActivity extends Activity {
 	Button getSched;
 	ProgressBar loading;
 
-	//static Document doc = new Document(null);
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		this.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#8035A6"));
 		input = (EditText) findViewById(R.id.fv);
 		getSched = (Button) findViewById(R.id.button1);
 		loading = (ProgressBar) findViewById(R.id.loading);

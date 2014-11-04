@@ -7,5 +7,6 @@
     <string name="get_schedule_fix">Get Schedule!</string>
     <string name="enter_id_fix">Enter ID #</string>
     <string name="title_activity_schedule">Schedule</string>
+    <string name="notifications_fix">Notifications</string>
 
 </resources>

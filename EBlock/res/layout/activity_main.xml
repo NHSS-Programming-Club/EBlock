@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.omegablitz.eblock.MainActivity" >
-    
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -27,24 +27,36 @@
         android:layout_marginTop="26dp"
         android:ems="10"
         android:hint="@string/enter_id_fix"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorLink="@android:color/holo_purple" />
 
-    <Button
-        android:id="@+id/button1"
+    <CheckBox
+        android:id="@+id/notifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:text="@string/get_schedule_fix" />
+        android:layout_marginTop="22dp"
+        android:text="@string/notifications_fix"
+        android:textColorLink="@android:color/holo_purple" />
 
     <ProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fv"
+        android:layout_below="@+id/notifications"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="44dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/loading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/get_schedule_fix"
+        android:textColorLink="@android:color/holo_purple" />
 
 </RelativeLayout>
