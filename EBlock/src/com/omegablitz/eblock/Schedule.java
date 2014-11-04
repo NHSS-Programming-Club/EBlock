@@ -48,21 +48,21 @@ public class Schedule extends Activity {
 		    int fontSize = 17;
 		    
 		    TextView day = new TextView(this);
-		    day.setTypeface(Typeface.SERIF);
+		    day.setTypeface(Typeface.SERIF, Typeface.BOLD);
 		    day.setTextSize(fontSize);
 		    day.setText(days[r]);
 		    day.setGravity(Gravity.CENTER);
 		    row.addView(day, cellParam);
 		    
 		    TextView teacher = new TextView(this);
-		    teacher.setTypeface(Typeface.SERIF);
+		    teacher.setTypeface(Typeface.SERIF, Typeface.BOLD);
 		    teacher.setTextSize(fontSize);
 		    teacher.setText(teachers[r]);
 		    teacher.setGravity(Gravity.CENTER);
 		    row.addView(teacher, cellParam);
 		    
 		    TextView room = new TextView(this);
-		    room.setTypeface(Typeface.SERIF);
+		    room.setTypeface(Typeface.SERIF, Typeface.BOLD);
 		    room.setTextSize(fontSize);
 		    room.setText(rooms[r]);
 		    room.setGravity(Gravity.CENTER);
