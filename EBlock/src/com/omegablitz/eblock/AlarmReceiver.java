@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.NotificationCompat;
 
 /**
  * User: bobacadodl
@@ -16,10 +17,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         SharedPreferences settings = context.getSharedPreferences(MainActivity.SAVED_ID, 0);
         if (settings.contains("id")) {
             NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.notification_icon)
-                            .setContentTitle("My notification")
-                            .setContentText("Hello World!");
+                    new NotificationCompat.Builder(context)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle("E-Block Notifier")
+                            .setContentText("Tap to check your schedule!");
         }
     }
 }
