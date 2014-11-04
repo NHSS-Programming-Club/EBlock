@@ -69,7 +69,7 @@ public class Schedule extends Activity {
 		    row.addView(room, cellParam);
 		    
 		    table.addView(row, rowParam);
-		    if(r % 2 == 0)
+		    if(r % 2 != 0)
 		    	row.setBackgroundColor(Color.parseColor("#A76EBF"));
 		    else
 		    	row.setBackgroundColor(Color.parseColor("#933BB8"));
