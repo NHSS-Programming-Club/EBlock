@@ -1,5 +1,7 @@
 package com.omegablitz.eblock;
 
+import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,7 +24,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	final public static String SCHEDULE = "com.omegablitz.eblock.SCHEDULE";
+	public static final String SCHEDULE = "com.omegablitz.eblock.SCHEDULE";
+	public static final String TEACHERS = "com.omegablitz.eblock.TEACHERS";
 	public static final String SAVED_ID = "SavedID";
 	EditText input;
 	Button getSched;
@@ -35,10 +38,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		input = (EditText) findViewById(R.id.editText1);
+		input = (EditText) findViewById(R.id.fv);
 		getSched = (Button) findViewById(R.id.button1);
 		loading = (ProgressBar) findViewById(R.id.loading);
-		
+
 		SharedPreferences settings = getApplicationContext().getSharedPreferences(SAVED_ID, Context.MODE_PRIVATE);
 		String id = settings.getString("id", "");
 		input.setText(id);
@@ -80,23 +83,29 @@ public class MainActivity extends Activity {
 
 		super.onStop();
 	}
-	private class AsyncTaskRunner extends AsyncTask<String, Void, String[]> {
+	private class AsyncTaskRunner extends AsyncTask<String, Void, Document> {
 
 		@Override
-		protected String[] doInBackground(String... params) {
-
+		protected Document doInBackground(String... params){
+			Document doc;
 			try {
-				return getRooms(params[0]);
-			} catch (Exception e) {
-				String[] fail = {"FAILED", "FAILED", "FAILED", "FAILED", "FAILED"};
-				return fail;
+				doc = Jsoup.connect("http://nsdsql.nashua.edu/events/eblocklookup/EblockSched.asp").data("street", params[0]).post();
+			} catch (IOException e) {
+				doc = null;
 			}
+			return  doc;
 		}
 
 		@Override
-		protected void onPostExecute(String[] rooms) {
+		protected void onPostExecute(Document doc) {
 			Intent intent = new Intent(MainActivity.this, Schedule.class);
+
+			String[] rooms = getRooms(doc);
 			intent.putExtra(SCHEDULE, rooms);
+
+			String[] teachers = getTeachers(doc);
+			intent.putExtra(TEACHERS, teachers);
+
 			startActivity(intent);
 		}
 
@@ -115,11 +124,10 @@ public class MainActivity extends Activity {
 		toast.show();
 	}
 
-	public static String[] getRooms(String id) throws Exception {
+	public static String[] getRooms(Document doc) {
 		String[] day = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 		String[] rooms = new String[day.length];
 
-		Document doc = Jsoup.connect("http://nsdsql.nashua.edu/events/eblocklookup/EblockSched.asp").data("street", id).post();
 		Elements elements = doc.getElementById("TheTable").child(0).children();
 		int num = 0;
 		for(int i = 0; i < elements.size(); i++) {
@@ -132,5 +140,26 @@ public class MainActivity extends Activity {
 			}
 		}
 		return rooms;
+	}
+
+	public static String[] getTeachers(Document doc) {
+		String[] day = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+		String[] teachers = new String[5];
+
+		Elements elements = doc.getElementById("TheTable").child(0).children();
+		int num = 0;
+		for(int i = 0; i < elements.size(); i++) {
+			Element e = elements.get(i);
+			if(e.children().size() == 0)
+				continue;
+			if(e.child(0).toString().contains(day[num])) {
+				teachers[num] = e.child(0).siblingElements().get(1).toString().split("&nbsp;")[1].split("<")[0];
+				if(teachers[num].contains(";"))
+					teachers[num] = teachers[num].split(";")[0];
+				num++;
+			}
+		}
+		return teachers;
+
 	}
 }

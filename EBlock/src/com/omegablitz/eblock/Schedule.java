@@ -2,10 +2,14 @@ package com.omegablitz.eblock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 public class Schedule extends Activity {
 
@@ -15,6 +19,7 @@ public class Schedule extends Activity {
 		setContentView(R.layout.activity_schedule);
 
 		populateListView();
+		
 	}
 
 	@Override
@@ -28,15 +33,37 @@ public class Schedule extends Activity {
 
 	public void populateListView() {
 		Intent intent = getIntent();
-		String[] myItems = intent.getStringArrayExtra(MainActivity.SCHEDULE);
-		myItems[0] = "Monday:\t\t\t\t" + myItems[0];
-		myItems[1] = "Tuesday:\t\t\t\t" + myItems[1];
-		myItems[2] = "Wednesday:\t\t\t" + myItems[2];
-		myItems[3] = "Thursday:\t\t\t" + myItems[3];
-		myItems[4] = "Friday:\t\t\t\t\t" + myItems[4];
+		String[] rooms = intent.getStringArrayExtra(MainActivity.SCHEDULE);
+		String[] teachers = intent.getStringArrayExtra(MainActivity.TEACHERS);
+		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+		
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myItems);
-		ListView list = (ListView) findViewById(R.id.schedule);
-		list.setAdapter(adapter);
+		TableLayout table = new TableLayout(this);
+		TableRow.LayoutParams width = new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT, 1.0f);
+		for (int r = 0; r < 5; ++r)
+		{
+		    TableRow row = new TableRow(this);
+		    
+		    TextView day = new TextView(this);
+		    day.setTypeface(Typeface.SANS_SERIF);
+		    day.setTextSize(15);
+		    day.setText(days[r]);
+		    row.addView(day, width);
+		    
+		    TextView teacher = new TextView(this);
+		    teacher.setTypeface(Typeface.SANS_SERIF);
+		    teacher.setTextSize(15);
+		    teacher.setText(teachers[r]);
+		    row.addView(teacher, width);
+		    
+		    TextView room = new TextView(this);
+		    room.setTypeface(Typeface.SANS_SERIF);
+		    room.setTextSize(15);
+		    room.setText(rooms[r]);
+		    row.addView(room, width);
+		    
+		    table.addView(row);
+		}
+		setContentView(table);
 	}
 }

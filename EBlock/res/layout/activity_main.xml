@@ -19,7 +19,7 @@
         android:textSize="40sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/fv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -33,7 +33,7 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/fv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
         android:text="@string/get_schedule_fix" />
@@ -43,7 +43,7 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/fv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
 
