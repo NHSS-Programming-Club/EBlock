@@ -2,10 +2,11 @@ package com.omegablitz.eblock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -39,30 +40,39 @@ public class Schedule extends Activity {
 		
 
 		TableLayout table = new TableLayout(this);
-		TableRow.LayoutParams width = new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT, 1.0f);
+		TableRow.LayoutParams cellParam = new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT, 1.0f);
+		TableLayout.LayoutParams rowParam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT, 1.0f);
 		for (int r = 0; r < 5; ++r)
 		{
 		    TableRow row = new TableRow(this);
+		    int fontSize = 17;
 		    
 		    TextView day = new TextView(this);
-		    day.setTypeface(Typeface.SANS_SERIF);
-		    day.setTextSize(15);
+		    day.setTypeface(Typeface.SERIF);
+		    day.setTextSize(fontSize);
 		    day.setText(days[r]);
-		    row.addView(day, width);
+		    day.setGravity(Gravity.CENTER);
+		    row.addView(day, cellParam);
 		    
 		    TextView teacher = new TextView(this);
-		    teacher.setTypeface(Typeface.SANS_SERIF);
-		    teacher.setTextSize(15);
+		    teacher.setTypeface(Typeface.SERIF);
+		    teacher.setTextSize(fontSize);
 		    teacher.setText(teachers[r]);
-		    row.addView(teacher, width);
+		    teacher.setGravity(Gravity.CENTER);
+		    row.addView(teacher, cellParam);
 		    
 		    TextView room = new TextView(this);
-		    room.setTypeface(Typeface.SANS_SERIF);
-		    room.setTextSize(15);
+		    room.setTypeface(Typeface.SERIF);
+		    room.setTextSize(fontSize);
 		    room.setText(rooms[r]);
-		    row.addView(room, width);
+		    room.setGravity(Gravity.CENTER);
+		    row.addView(room, cellParam);
 		    
-		    table.addView(row);
+		    table.addView(row, rowParam);
+		    if(r % 2 == 0)
+		    	row.setBackgroundColor(Color.parseColor("#A76EBF"));
+		    else
+		    	row.setBackgroundColor(Color.parseColor("#933BB8"));
 		}
 		setContentView(table);
 	}

@@ -11,44 +11,7 @@
     <TableLayout
         android:id="@+id/table"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <TableRow
-            android:id="@+id/monday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:text="first"
-                android:padding="3dip" />
-            <TextView
-                android:text="second"
-                android:padding="3dip" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tuesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/wednesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/thursday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/friday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
+        android:layout_height="fill_parent">
     </TableLayout>
 
 </RelativeLayout>
