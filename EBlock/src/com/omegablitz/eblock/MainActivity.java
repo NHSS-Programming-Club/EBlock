@@ -98,6 +98,19 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(Document doc) {
+			if(doc == null) {
+				toast("No Internet Connection");
+				loading.setVisibility(View.INVISIBLE);
+				getSched.setVisibility(View.VISIBLE);
+				return;
+			}
+			if(doc.toString().contains("Not a legitimate local ID")) {
+				toast("Invalid ID");
+				loading.setVisibility(View.INVISIBLE);
+				getSched.setVisibility(View.VISIBLE);
+				return;
+			}
+			
 			Intent intent = new Intent(MainActivity.this, Schedule.class);
 
 			String[] rooms = getRooms(doc);
@@ -116,7 +129,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	void debug(String text) {
+	void toast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;
 
@@ -148,8 +161,7 @@ public class MainActivity extends Activity {
 
 		Elements elements = doc.getElementById("TheTable").child(0).children();
 		int num = 0;
-		for(int i = 0; i < elements.size(); i++) {
-			Element e = elements.get(i);
+		for(Element e : elements) {
 			if(e.children().size() == 0)
 				continue;
 			if(e.child(0).toString().contains(day[num])) {
