@@ -1,7 +1,9 @@
 package com.omegablitz.eblock;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +20,11 @@ public class BootReceiver extends BroadcastReceiver {
     //Setup alarm on restart device
     @Override
     public void onReceive(Context context, Intent intent) {
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+        AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent2 = new Intent(context, AlarmReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent2, 0);
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             // Set the alarm to start at 10:00 a.m.
             Calendar calendar = Calendar.getInstance();
