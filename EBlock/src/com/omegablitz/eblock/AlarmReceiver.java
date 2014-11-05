@@ -1,5 +1,6 @@
 package com.omegablitz.eblock;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                             .setSmallIcon(R.drawable.ic_launcher)
                             .setContentTitle("E-Block Notifier")
                             .setContentText("Tap to check your schedule!");
+
+            NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.notify(1, mBuilder.build());
         }
     }
 }
